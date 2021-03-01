@@ -7,20 +7,20 @@ extension RoutePathExtension on String {
   ///
   /// `/feature/page/` invalid
 
-  bool get isAValidRoutePath {
-    final regex = RegExp(r'^(\/[^\/ ]*)+');
-    final lastCharacter = this[length - 1];
-
-    return (lastCharacter != '/' || length == 1) && regex.hasMatch(this);
-  }
-
   List<String> get extractedRoutePaths {
-    if (!isAValidRoutePath) {
+    try {
+      final route = Uri.tryParse(this);
+
+      var paths = List.of(route?.pathSegments);
+
+      if (paths.isEmpty) return ["/"];
+
+      paths.removeWhere((element) => element.isEmpty);
+
+      return paths.map((value) => '/$value').toList();
+    } on FormatException {
       throw AnthorNavigatorException('$this IS NOT A TYPE OF ROUTE PATH');
     }
-
-    final routePathNames = split('/')..removeAt(0);
-    return routePathNames.map((value) => '/$value').toList();
   }
 
   /// `/featureRoutePath`
