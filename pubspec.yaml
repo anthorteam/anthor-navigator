@@ -2,7 +2,7 @@ name: anthor_navigator
 description: A new Flutter package project.
 version: 0.0.1
 author:
-homepage:
+homepage: https://github.com/anthorteam/anthor-navigator.git
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
