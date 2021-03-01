@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../errors/route_path_exception.dart';
+import '../errors/anthor_navigator_exception.dart';
 import '../extensions/route_path_extension.dart';
 import '../interfaces/app_router_interface.dart';
 import '../interfaces/feature_router_interface.dart';
@@ -32,7 +32,7 @@ class AnthorNavigator {
           route: route,
           settings: settings,
         );
-      } on RoutePathException catch (e) {
+      } on AnthorNavigatorException catch (e) {
         return _buildRouteError(e.message);
       }
     };

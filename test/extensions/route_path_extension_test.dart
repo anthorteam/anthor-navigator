@@ -48,7 +48,7 @@ void main() {
     test("should throw an exception when is not a valid path", () {
       expect(
         () => wrongPath.extractedRoutePaths,
-        throwsA(isA<RoutePathException>()),
+        throwsA(isA<AnthorNavigatorException>()),
       );
     });
   });

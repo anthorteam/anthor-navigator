@@ -1,6 +1,6 @@
 library anthor_navigator;
 
-export 'errors/route_path_exception.dart';
+export 'errors/anthor_navigator_exception.dart';
 export 'extensions/route_path_extension.dart';
 export 'interfaces/app_router_interface.dart';
 export 'interfaces/feature_router_interface.dart';

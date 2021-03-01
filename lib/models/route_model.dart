@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../anthor_navigator.dart';
 import '../interfaces/subfeature_router_interface.dart';
 
 /// That is defined in feature/subfeature's router file
@@ -12,6 +13,11 @@ class AnthorRoute {
     @required this.name,
     this.child,
     this.subfeature,
-  }) : assert((child == null || subfeature == null) &&
-            (child != null || subfeature != null));
+  }) : assert(
+          (child == null || subfeature == null) &&
+              (child != null || subfeature != null),
+          throw AnthorNavigatorException(
+            "$name is an invalid Route, the route most to be a child or a subfeature",
+          ),
+        );
 }

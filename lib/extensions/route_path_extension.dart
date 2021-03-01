@@ -1,4 +1,4 @@
-import '../errors/route_path_exception.dart';
+import '../errors/anthor_navigator_exception.dart';
 
 extension RoutePathExtension on String {
   /// Examples:
@@ -16,7 +16,7 @@ extension RoutePathExtension on String {
 
   List<String> get extractedRoutePaths {
     if (!isAValidRoutePath) {
-      throw RoutePathException('$this IS NOT A TYPE OF ROUTE PATH');
+      throw AnthorNavigatorException('$this IS NOT A TYPE OF ROUTE PATH');
     }
 
     final routePathNames = split('/')..removeAt(0);
