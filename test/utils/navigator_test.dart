@@ -8,7 +8,7 @@ void main() {
   RouteFactory routes;
 
   setUp(() {
-    routes = MockAppRouter().generateRoute;
+    routes = MockAppRouter().generator;
   });
 
   group("call routes by features", () {

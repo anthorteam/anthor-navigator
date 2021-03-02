@@ -16,6 +16,6 @@ class AppRouter extends AnthorAppRouter {
       ];
 
   @override
-  Function get generateRoute =>
+  Function get generator =>
       AnthorNavigator().generateRoute(appRouter: AppRouter());
 }
