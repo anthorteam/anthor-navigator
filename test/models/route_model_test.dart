@@ -8,9 +8,9 @@ class MockSubFeature implements AnthorSubfeatureRouter {
 }
 
 void main() {
-  String route;
-  AnthorSubfeatureRouter mockSubFeature;
-  Widget page;
+  String? route;
+  AnthorSubfeatureRouter? mockSubFeature;
+  Widget? page;
 
   setUp(() {
     route = "/page";

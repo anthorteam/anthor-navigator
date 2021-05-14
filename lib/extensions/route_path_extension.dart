@@ -11,7 +11,7 @@ extension RoutePathExtension on String {
     try {
       final route = Uri.tryParse(this);
 
-      var paths = List.of(route?.pathSegments);
+      var paths = List.of(route!.pathSegments);
 
       if (paths.isEmpty) return ["/"];
 

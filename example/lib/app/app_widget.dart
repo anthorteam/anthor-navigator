@@ -12,7 +12,7 @@ class AppWidget extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       initialRoute: AnthorNavigator.initialRoute,
-      onGenerateRoute: AppRouter().generator,
+      onGenerateRoute: AnthorNavigator().generateRoute(appRouter: AppRouter()),
     );
   }
 }

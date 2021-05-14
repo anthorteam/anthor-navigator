@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import '../interfaces/feature_router_interface.dart';
 
 /// this is defined in `app_router.dart`
@@ -8,7 +7,7 @@ class AnthorFeature {
   final AnthorFeatureRouter router;
 
   AnthorFeature({
-    @required this.name,
-    @required this.router,
+    required this.name,
+    required this.router,
   });
 }

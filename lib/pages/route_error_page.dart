@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class RouteErrorPage extends StatelessWidget {
   final String message;
-  RouteErrorPage({@required this.message}) : assert(message != null);
+  RouteErrorPage({required this.message});
   @override
   Widget build(BuildContext context) {
     return Scaffold(

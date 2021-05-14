@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart' show IterableExtension;
 import 'package:flutter/material.dart';
 
 import '../errors/anthor_navigator_exception.dart';
@@ -10,18 +11,17 @@ import '../pages/route_error_page.dart';
 class AnthorNavigator {
   static const String initialRoute = "/";
 
-  RouteFactory generateRoute({@required AnthorAppRouter appRouter}) {
+  RouteFactory generateRoute({required AnthorAppRouter appRouter}) {
     return (settings) {
       try {
         //get the selected feature route
-        final feature = appRouter.features.firstWhere(
-          (feature) => feature?.name == settings.name.featureRoutePath,
-          orElse: () => null,
+        final feature = appRouter.features.firstWhereOrNull(
+          (feature) => feature.name == settings.name!.featureRoutePath,
         );
 
         var route = _directToRouteWithSeledtedPage(
           featureRouter: feature?.router,
-          routePath: settings.name,
+          routePath: settings.name!,
         );
 
         if (route == null) {
@@ -38,30 +38,27 @@ class AnthorNavigator {
     };
   }
 
-  AnthorRoute _directToRouteWithSeledtedPage({
-    AnthorFeatureRouter featureRouter,
-    String routePath,
+  AnthorRoute? _directToRouteWithSeledtedPage({
+    AnthorFeatureRouter? featureRouter,
+    required String routePath,
   }) {
     if (routePath.pathIsAFeature) {
       //then we have to return the initial page
-      return featureRouter?.routes?.firstWhere(
+      return featureRouter?.routes.firstWhereOrNull(
         (element) => element.name == initialRoute,
-        orElse: () => null,
       );
     }
 
     /// if is not a feauture, then is a subfeature or a page
-    final route = featureRouter?.routes?.firstWhere(
+    final route = featureRouter?.routes.firstWhereOrNull(
       (element) => element.name == routePath.subfeatureRoutePath,
-      orElse: () => null,
     );
 
     //the route have subfeature or a child
     if (route?.subfeature != null) {
       //then we have to return a page from a subfeature
-      return route.subfeature.routes.firstWhere(
+      return route!.subfeature!.routes.firstWhereOrNull(
         (element) => element.name == routePath.pageRoutePath,
-        orElse: () => null,
       );
     }
 
@@ -70,14 +67,14 @@ class AnthorNavigator {
   }
 
   Route<dynamic> _buildRoute({
-    @required AnthorRoute route,
-    @required RouteSettings settings,
+    required AnthorRoute route,
+    required RouteSettings settings,
   }) {
     debugPrint("INIT ROUTE: --- ${settings.name}");
 
     return MaterialPageRoute(
       builder: (context) {
-        return route?.child(context, settings?.arguments);
+        return route.child!(context, settings.arguments)!;
       },
       settings: settings,
     );

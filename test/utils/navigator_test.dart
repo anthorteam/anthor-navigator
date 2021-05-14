@@ -5,17 +5,18 @@ import 'package:flutter_test/flutter_test.dart';
 import '../mocks.dart';
 
 void main() {
-  RouteFactory routes;
+  RouteFactory? routes;
 
   setUp(() {
-    routes = MockAppRouter().generator;
+    routes =
+        MockAppRouter().generator as Route<dynamic>? Function(RouteSettings)?;
   });
 
   group("call routes by features", () {
     test("should work well when is called the correct route", () {
       final settings = RouteSettings(name: "/", arguments: "23");
 
-      final route = routes?.call(settings);
+      final Route<dynamic> route = routes!.call(settings)!;
 
       expect(route.settings.name, equals("/"));
       expect(route.settings.arguments, equals("23"));
@@ -26,8 +27,8 @@ void main() {
 
       final route = routes?.call(settings);
 
-      expect(route?.settings?.name, isNull);
-      expect(route?.settings?.arguments, isNull);
+      expect(route?.settings.name, isNull);
+      expect(route?.settings.arguments, isNull);
     });
   });
 
@@ -35,7 +36,7 @@ void main() {
     test("should work well when is called a correct route from feature", () {
       final settings = RouteSettings(name: "/second/details");
 
-      final route = routes?.call(settings);
+      final Route<dynamic> route = routes!.call(settings)!;
 
       expect(route.settings.name, equals("/second/details"));
       expect(route.settings.arguments, isNull);
@@ -48,8 +49,8 @@ void main() {
 
       final route = routes?.call(settings);
 
-      expect(route?.settings?.name, isNull);
-      expect(route?.settings?.arguments, isNull);
+      expect(route?.settings.name, isNull);
+      expect(route?.settings.arguments, isNull);
     });
 
     test(
@@ -62,8 +63,8 @@ void main() {
 
       final route = routes?.call(settings);
 
-      expect(route?.settings?.name, isNull);
-      expect(route?.settings?.arguments, isNull);
+      expect(route?.settings.name, isNull);
+      expect(route?.settings.arguments, isNull);
     });
   });
 
@@ -71,7 +72,7 @@ void main() {
     test("should work well when is called a correct route from subfeature", () {
       final settings = RouteSettings(name: "/second/example");
 
-      final route = routes?.call(settings);
+      final Route<dynamic> route = routes!.call(settings)!;
 
       expect(route.settings.name, equals("/second/example"));
       expect(route.settings.arguments, isNull);
@@ -84,8 +85,8 @@ void main() {
 
       final route = routes?.call(settings);
 
-      expect(route?.settings?.name, isNull);
-      expect(route?.settings?.arguments, isNull);
+      expect(route?.settings.name, isNull);
+      expect(route?.settings.arguments, isNull);
     });
 
     test("should work when is called an correct route in a subfeature", () {
@@ -96,8 +97,8 @@ void main() {
 
       final route = routes?.call(settings);
 
-      expect(route?.settings?.name, "/second/example/details");
-      expect(route?.settings?.arguments, equals("23"));
+      expect(route?.settings.name, "/second/example/details");
+      expect(route?.settings.arguments, equals("23"));
     });
   });
 }
